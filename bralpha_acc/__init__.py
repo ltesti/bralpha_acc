@@ -16,6 +16,12 @@ import matplotlib
 if matplotlib.get_backend().lower() == 'macosx':
     matplotlib.use('TkAgg')
 
+from .class_ii import cii_data
 from .io import read_table
+from .cardelli_alav import cardelli_alav
+from .calc_cii_ratio import cii_ratio
+from .line_flux_dered import fder
+#from .plots_ratio import plot_ratio
+from .lacc_fairlamb import lacc_fairlamb
 
 

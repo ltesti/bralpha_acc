@@ -21,7 +21,7 @@ def read_table(filename,preset='ClassII',columns=None):
         """
     # Step zero: decide the columns of interest
     column_presets = {
-        'ClassII' : ["Name","dist","Lstar","Aj","Fbrg","eFbrg","Fbra","eFbra","L_acc_Fairlamb"],
+        'ClassII' : ["Name","dist","Lstar","Aj","Fbrg","eFbrg","Fpfg","eFpfg","Fbra","eFbra","L_acc_Fairlamb"],
         'ClassI' : ["Name","Lbol","Tbol","dist","Fbrg","eFbrg","Fbra","eFbra","Av","eAv","Abrg","eAbrg","Abra","eAbra","Lacc","eLacc","TbH24","iH24"],
         }
     if not columns:
