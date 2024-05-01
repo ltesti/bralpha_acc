@@ -29,7 +29,7 @@ def lline(f,ef,d_pc):
     Llinem = np.copy(Lline)
     Llinep = np.copy(Lline)
     delta_Lline = 0.0*np.copy(Lline)
-    ng = np.where(f>0.0)
+    ng = np.where((f>0.0) & (ef<f))
     Lline[ng] = np.log10((f[ng] * 1.e-17 * 4 * np.pi * (pc_to_m(d_pc[ng]) ** 2)) / lsun)
     Llinem[ng] = np.log10(((f[ng]-ef[ng]) * 1.e-17 * 4 * np.pi * (pc_to_m(d_pc[ng]) ** 2)) / lsun)
     Llinep[ng] = np.log10(((f[ng]+ef[ng]) * 1.e-17 * 4 * np.pi * (pc_to_m(d_pc[ng]) ** 2)) / lsun)

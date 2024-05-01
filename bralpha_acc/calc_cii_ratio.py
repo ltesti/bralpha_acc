@@ -18,7 +18,8 @@ def cii_ratio(f1,ef1,f2,ef2):
     ng = np.where((np.isfinite(f1)) & (np.isfinite(f2)) & (ef1>0.0) & (ef2>0.0))
     #
     r = (f1/f2)
-    er = r * np.sqrt((ef1 / f1) ** 2 + (ef2 / f2) ** 2)
+    er = r * 0.0
+    er[ng] = r[ng] * np.sqrt((ef1[ng] / f1[ng]) ** 2 + (ef2[ng] / f2[ng]) ** 2)
     #
     r_mean = np.mean(r[ng])
     er_mean = np.sqrt( ((np.mean(r[ng])-r[ng])**2).sum() / len(r[ng]) ) / np.sqrt(len(r[ng]))

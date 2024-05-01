@@ -33,6 +33,7 @@ class cii_data(object):
         # line ratios computation
         self.rbram, self.erbram, self.rbra, self.erbra = cii_ratio(self.fbrad,self.efbrad,self.fbrgd,self.efbrgd)
         self.rpfgm, self.erpfgm, self.rpfg, self.erpfg = cii_ratio(self.fpfgd,self.efpfgd,self.fbrgd,self.efbrgd)
+        self.rpfgbram, self.erpfgbram, self.rpfgbra, self.erpfgbra = cii_ratio(self.fpfgd,self.efpfgd,self.fbrad,self.efbrad)
         #
         # line luminosities
         self.lbrg, self.lbrgm, self.lbrgp, self.elbrg = lline(self.fbrgd,self.efbrgd,self.data['dist'])
@@ -44,12 +45,13 @@ class cii_data(object):
     
     #
     # Method to execute the ratio vs star plot
-    def plot_ratio(self, plot="Bra"):
+    def plot_lines_ratios(self, plot="Bra", myax=None):
         #
         recognized = True
         if plot == 'Bra':
-            #myline = "F$_{Br\alpha}$"
+            myline = "F$_{Br\alpha}$"
             myline = "FBra"
+            myden = "FBrg"
             mycol = "red"
             r = self.rbra
             er = self.erbra
@@ -58,15 +60,25 @@ class cii_data(object):
         elif plot == 'Pfg':
             myline = "F$_{Pf\gamma}$"
             myline = "FPfg"
+            myden = "FBrg"
             mycol = "green"
             r = self.rpfg
             er = self.erpfg
             rm = self.rpfgm
             erm = self.erpfgm
+        elif plot == 'PfgBra':
+            myline = "F$_{Pf\gamma}$"
+            myline = "FPfg"
+            myden = "FBra"
+            mycol = "orange"
+            r = self.rpfgbra
+            er = self.erpfgbra
+            rm = self.rpfgbram
+            erm = self.erpfgbram
         else:
             recognized=False
         if recognized:
-            plot_ratio(self.data['Name'], r, er, rm, erm, filefig=None, maxrelerr=3., maxratio=3., mycol=mycol, myline=myline)
+            plot_ratio(self.data['Name'], r, er, rm, erm, ax=myax, filefig=None, maxrelerr=3., maxratio=3., mycol=mycol, myline=myline, myden=myden)
         else:
             print("Unrecognized plot ({0})".format(plot))
             
